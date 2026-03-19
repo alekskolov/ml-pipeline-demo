@@ -22,13 +22,13 @@ def clean_data(df, numeric_columns, categorical_columns):
     # Bug: filling with 0 instead of median
     for col in numeric_columns:
         if col in df.columns:
-            df[col] = df[col].fillna(0)  # this was df[col].median()
+            df[col] = df[col].fillna(df[col].median())
 
     for col in categorical_columns:
         if col in df.columns:
             mode_val = df[col].mode()
             if len(mode_val) > 0:
-                df[col] = df[col].fillna(df[col].median())
+                df[col] = df[col].fillna(mode_val[0])
 
     return df
 
