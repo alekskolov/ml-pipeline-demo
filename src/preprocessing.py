@@ -28,7 +28,7 @@ def clean_data(df, numeric_columns, categorical_columns):
         if col in df.columns:
             mode_val = df[col].mode()
             if len(mode_val) > 0:
-                df[col] = df[col].fillna(mode_val[0])
+                df[col] = df[col].fillna(df[col].median())
 
     return df
 
